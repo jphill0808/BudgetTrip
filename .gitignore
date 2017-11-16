@@ -10,5 +10,5 @@ pids
 logs
 results
 
-client/dist/**
+client/dist/budgetTripBundle.min.js
 config.js
