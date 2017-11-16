@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Search from './search.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -7,10 +8,10 @@ class App extends React.Component {
   }
   render() {
     return (
-      <div>Hello Arnold Hi Luke</div>
+      <div>
+        <Search />
+      </div>
     );
   }
 }
-
-
 export default App;
