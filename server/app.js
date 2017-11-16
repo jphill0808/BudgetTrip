@@ -2,6 +2,10 @@ const express = require('express');
 
 const app = express();
 
-app.listen(8080, () => {
-  console.log('Express is listenin on port 8080');
+app.get('/', (req, res) => {
+  res.json('hello world');
+});
+
+app.listen(1130, () => {
+  console.log('Express is listening on port 1130');
 });
