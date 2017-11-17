@@ -5,7 +5,6 @@ import Auth from '../../../Auth/Auth.js';
 import Search from './Search.jsx';
 
 const auth = new Auth();
-
 class App extends React.Component {
   constructor(props) {
     super(props);
