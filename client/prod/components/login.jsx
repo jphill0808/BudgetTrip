@@ -1,65 +1,53 @@
+var path = require('path');
 import React, { Component } from 'react';
-import { Navbar, Button } from 'react-bootstrap';
+// import { Navbar, Button } from 'react-bootstrap';
 import Auth0Lock from 'auth0-lock';
-import './App.css';
+import Auth from '../../../Auth/Auth.js';
+// import './App.css';
 
 class Login extends Component {
-  goTo(route) {
-    this.props.history.replace(`/${route}`)
+  constructor(props) {
+    super(props);
+
+    this.login = this.login.bind(this);
   }
 
   login() {
     this.props.auth.login();
   }
 
-  logout() {
-    this.props.auth.logout();
-  }
-
   render() {
     const { isAuthenticated } = this.props.auth;
 
     return (
-      <div>
-        <Navbar fluid>
-          <Navbar.Header>
-            <Navbar.Brand>
-              <a href="#">Auth0 - React</a>
-            </Navbar.Brand>
-            <Button
-              bsStyle="primary"
-              className="btn-margin"
-              onClick={this.goTo.bind(this, 'home')}
-            >
-              Home
-            </Button>
-            {
-              !isAuthenticated() && (
-                  <Button
-                    bsStyle="primary"
-                    className="btn-margin"
-                    onClick={this.login.bind(this)}
-                  >
-                    Log In
-                  </Button>
-                )
-            }
-            {
-              isAuthenticated() && (
-                  <Button
-                    bsStyle="primary"
-                    className="btn-margin"
-                    onClick={this.logout.bind(this)}
-                  >
-                    Log Out
-                  </Button>
-                )
-            }
-          </Navbar.Header>
-        </Navbar>
-      </div>
-    );
+        <div>Login</div>
+      );
   }
 }
 
-export default App;
+export default Login;
+
+
+
+/* 
+<div className="login-page">
+  <div className="row">
+    <div className="col s12">
+      <div className="card white">
+        <div className="card-content blue-text">
+          <span className="card-title landing-title">Welcome to BudgetTrip!</span>
+        </div>
+        <div className="card-action landing">
+          <strong><a
+            style={{ cursor: 'pointer' }}
+            className="waves-effect red lighten-1 btn"
+            onClick={this.login}
+          >
+          Log In/Sign Up
+          </a></strong>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+*/
