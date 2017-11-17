@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Search from './search.jsx';
+import Search from './Search.jsx';
 
 class App extends React.Component {
   constructor(props) {
