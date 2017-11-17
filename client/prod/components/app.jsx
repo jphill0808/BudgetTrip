@@ -6,6 +6,7 @@ import Auth from '../../../Auth/Auth.js';
 
 const auth = new Auth();
 
+
 class App extends React.Component {
   constructor(props) {
     super(props);

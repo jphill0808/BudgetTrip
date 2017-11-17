@@ -13,10 +13,6 @@ results
 client/dist/budgetTripBundle.min.js
 config.js
 
-<<<<<<< HEAD
-
-=======
->>>>>>> Update gitignore
 ## Floobits ##
 .floo
 .flooignore
