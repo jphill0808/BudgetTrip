@@ -1,6 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Search from './search.jsx';
+import Login from './login.jsx';
+import Auth from '../../../Auth/Auth.js';
+
+const auth = new Auth();
+
+import Search from './Search.jsx';
+
 
 class App extends React.Component {
   constructor(props) {
@@ -9,6 +15,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
+        <Login auth={auth}/>
         <Search />
       </div>
     );
