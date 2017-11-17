@@ -16,3 +16,6 @@ config.js
 ## Floobits ##
 .floo
 .flooignore
+
+##Auth##
+Auth0-variables.js
