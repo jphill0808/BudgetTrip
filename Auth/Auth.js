@@ -7,7 +7,9 @@ const lock = new Auth0Lock(AUTH_CONFIG.clientId, AUTH_CONFIG.domain, {
   theme: {
     logo: 'https://www.graphicsprings.com/filestorage/stencils/74cd6537a23f9e0bd1c4525d06517099.svg',
     primaryColor: '#3A99D8'
-  }
+  },
+  allowedConnections: ['facebook']
+
 
   // oidcConformant: false,
   // autoclose: true,
@@ -21,21 +23,22 @@ const lock = new Auth0Lock(AUTH_CONFIG.clientId, AUTH_CONFIG.domain, {
   // }
 });
 
-// lock.on('authenticated', function(authResult) {
-//   console.log('Result of authentication', authResult);
+lock.on('authenticated', function(authResult) {
+  console.log('Result of authentication', authResult);
 
-//   if (!authResult.accessToken) return;
+  if (!authResult.accessToken) return;
 
-//   lock.getUserInfo(authResult.accessToken, function(error, profile) {
-//     console.log(error, profile);
-//   });
-// });
+  lock.getUserInfo(authResult.accessToken, function(error, profile) {
+    console.log(error, profile);
+  });
+});
 
-// lock.on('authorization_error', function(error) {
-//   console.log('authorization_error', error);
-// });
+lock.on('authorization_error', function(error) {
+  console.log('authorization_error', error);
+});
 
 lock.show();
+
 
 export default class Auth {
   constructor() {
@@ -48,48 +51,51 @@ export default class Auth {
     this.setSession = this.setSession.bind(this);
   }
 
-login() {
-  this.auth0.authorize();
-}
+  login() {
+    console.log('this' ,this);
+    lock.show();
+  }
 
-handleAuthentication() {
-  this.auth0.parseHash((err, authResult) => {
-    if (authResult && authResult.accessToken && authResult.idToken) {
-      this.setSession(authResult);
-      history.replace('/home');
-    } else if (err) {
-      history.replace('/home');
+  handleAuthentication() {
+    lock.on('authenticated', this.setSession);
+    lock.on('authorization_error', (err) => {
       console.log(err);
       alert(`Error: ${err.error}. Check the console for further details.`);
-    }
-  });
-}
+      history.replace('/login');
+    });
+  }
 
-setSession(authResult) {
-  // Set the time that the access token will expire at
-  let expiresAt = JSON.stringify((authResult.expiresIn * 1000) + new Date().getTime());
-  localStorage.setItem('access_token', authResult.accessToken);
-  localStorage.setItem('id_token', authResult.idToken);
-  localStorage.setItem('expires_at', expiresAt);
-  // navigate to the home route
-  history.replace('/home');
-}
+  setSession(authResult) {
+    if (authResult && authResult.accessToken && authResult.idToken) {
+       lock.getUserInfo(authResult.accessToken, function(err, profile) {
+         if (err) {
+           console.log(err);
+         }
+         localStorage.setItem('accessToken', authResult.accessToken);
+         localStorage.setItem('profile', JSON.stringify(profile));
+         localStorage.setItem('idToken', authResult.idToken);
+         // navigate to the home route
+         history.replace('/dashboard');
+       });
+     }
+  }
 
-logout() {
-  // Clear access token and ID token from local storage
-  localStorage.removeItem('access_token');
-  localStorage.removeItem('id_token');
-  localStorage.removeItem('expires_at');
-  // navigate to the home route
-  history.replace('/home');
-}
+  logout() {
+    // Clear access token and ID token from local storage
+    localStorage.removeItem('accessToken');
+    localStorage.removeItem('idToken');
+    localStorage.removeItem('profile');
+    // navigate to the home route
+    history.replace('/login');
+  }
 
-isAuthenticated() {
-  // Check whether the current time is past the 
-  // access token's expiry time
-  let expiresAt = JSON.parse(localStorage.getItem('expires_at'));
-  return new Date().getTime() < expiresAt;
-}
+  isAuthenticated() {
+    // this.logout();
+     // Check whether the current time is past the
+     // access token's expiry time
+     // Clear access token and ID token from local storage
+     return (!!localStorage.getItem('accessToken') && !!localStorage.getItem('idToken'));
+  }
 }
 
 
