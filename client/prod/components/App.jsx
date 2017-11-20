@@ -4,6 +4,7 @@ import Login from './login.jsx';
 import Auth from '../../../Auth/Auth.js';
 import Search from './Search.jsx';
 
+
 const auth = new Auth();
 
 class App extends React.Component {
@@ -11,7 +12,14 @@ class App extends React.Component {
     super(props);
   }
 
-
+  // render() {
+  //   return (
+  //     <div>
+  //       <Login auth={auth}/>
+  //       <Search />
+  //     </div>
+  //   );
+  // }
   render() {
     return (
       <div>
