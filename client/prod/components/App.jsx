@@ -17,7 +17,7 @@ class App extends React.Component {
     }
   }
 
-  
+
 
 
   render() {
@@ -29,12 +29,14 @@ class App extends React.Component {
 
 
     return (
-
-        <div>
-          <Login auth={auth}/>
-          <Search />
-        </div>
-
+      <BrowserRouter>
+        <Switch>
+          <div>
+            <Login auth={auth}/>
+            <Search />
+          </div>
+        </Switch>
+      </BrowserRouter>
     );
   }
 }
@@ -42,9 +44,9 @@ export default App;
 
 
       // <BrowserRouter>
-      //   <Route path="/" component={Login} ></Route>  
-      //   <Route path="/login" render={(props) => { Login }}></Route> 
-        
+      //   <Route path="/" component={Login} ></Route>
+      //   <Route path="/login" render={(props) => { Login }}></Route>
+
       //   <div>
       //     <Login auth={auth}/>
       //     <Search />
