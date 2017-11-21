@@ -4,10 +4,16 @@ import Login from './login.jsx';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { Router, Route, BrowserRouter, Redirect, withRouter } from 'react-router-dom';
 import Search from './Search.jsx';
+import Header from './Header.jsx';
 import Auth from '../../../Auth/Auth.js';
+import Profile from './Header_Helpers/Profile.jsx';
 const auth = new Auth();
 
 auth.handleAuthentication();
+
+const style = {
+
+}
 
 class App extends React.Component {
   constructor(props) {
@@ -35,8 +41,9 @@ class App extends React.Component {
     return (
       <MuiThemeProvider>
         <div>
-          <Login auth={auth} />
+          <Header auth={auth}/>
           <Search />
+          <Profile />
         </div>
       </MuiThemeProvider>
     );

@@ -37,7 +37,7 @@ lock.on('authorization_error', function(error) {
   console.log('authorization_error', error);
 });
 
-lock.show();
+// lock.show();
 
 
 export default class Auth {
@@ -81,6 +81,7 @@ export default class Auth {
   }
 
   logout() {
+    console.log('HOOOOOORAY');
     // Clear access token and ID token from local storage
     localStorage.removeItem('accessToken');
     localStorage.removeItem('idToken');
