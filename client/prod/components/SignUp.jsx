@@ -48,7 +48,7 @@ class SignUp extends React.Component {
         checked: !oldState.checked
       };
     });
-  }
+  };
 
   handleOnSubmit(e) {
     if (!this.state.checked) {

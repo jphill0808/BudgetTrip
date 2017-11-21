@@ -1,11 +1,12 @@
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
+const axios = require('axios');
 
 
 
 router.get('/', (req, res, next) => {
-  res.send('It works!');
+  res.json('INSIDE TRAVEL!');
 });
 
 router.post('/', (req, res, next) => {
