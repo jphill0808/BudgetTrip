@@ -16,8 +16,6 @@ class App extends React.Component {
       isLoggedIn: false,
     };
   }
-
-
   // render() {
   //   return (
   //     <div>
@@ -26,8 +24,6 @@ class App extends React.Component {
   //     </div>
   //   );
   // }
-
-
   render() {
     if (auth.isAuthenticated()) {
       console.log('Authenticated');
