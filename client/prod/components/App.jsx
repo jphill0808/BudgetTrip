@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Login from './login.jsx';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { Router, Route, BrowserRouter, Redirect, withRouter } from 'react-router-dom';
 import Search from './Search.jsx';
-
 import Auth from '../../../Auth/Auth.js';
 const auth = new Auth();
 
@@ -13,13 +13,17 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isLoggedIn: false
-    }
+      isLoggedIn: false,
+    };
   }
-
-
-
-
+  // render() {
+  //   return (
+  //     <div>
+  //       <Login auth={auth}/>
+  //       <Search />
+  //     </div>
+  //   );
+  // }
   render() {
     if (auth.isAuthenticated()) {
       console.log('Authenticated');
@@ -29,14 +33,12 @@ class App extends React.Component {
 
 
     return (
-      <BrowserRouter>
-        <Switch>
-          <div>
-            <Login auth={auth}/>
-            <Search />
-          </div>
-        </Switch>
-      </BrowserRouter>
+      <MuiThemeProvider>
+        <div>
+          <Login auth={auth} />
+          <Search />
+        </div>
+      </MuiThemeProvider>
     );
   }
 }
