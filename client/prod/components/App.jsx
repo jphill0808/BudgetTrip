@@ -17,6 +17,7 @@ class App extends React.Component {
     };
   }
 
+
   // render() {
   //   return (
   //     <div>
@@ -25,6 +26,7 @@ class App extends React.Component {
   //     </div>
   //   );
   // }
+
 
   render() {
     if (auth.isAuthenticated()) {
