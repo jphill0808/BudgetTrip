@@ -16,8 +16,8 @@ const style = {
 }
 
 class App extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor(props)
+{    super(props);
     this.state = {
       isLoggedIn: false,
     };
@@ -42,8 +42,9 @@ class App extends React.Component {
       <MuiThemeProvider>
         <div>
           <Header auth={auth}/>
-          <Search />
           <Profile />
+          <Login auth={auth} />
+          <Search />
         </div>
       </MuiThemeProvider>
     );
