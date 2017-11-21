@@ -36,6 +36,8 @@ export default class Search extends React.Component {
       location: '',
       startDate: minDate,
       endDate: maxDate,
+      lat: '',
+      lng: '',
     };
     this.onChange = input => {
       this.setState({ input });
@@ -44,7 +46,6 @@ export default class Search extends React.Component {
     this.search = this.search.bind(this);
     this.handleChangeMinDate = this.handleChangeMinDate.bind(this);
     this.handleChangeMaxDate = this.handleChangeMaxDate.bind(this);
-    // this.handleDate = this.handleDate.bind(this);
   }
 
   handleChangeMinDate(event, date) {
@@ -52,15 +53,6 @@ export default class Search extends React.Component {
       startDate: date,
     });
   }
-
-  /*  handleDate(event, date) {
-    console.log('event: ', event);
-    const pickedDate = event.target.name;
-    console.log('pickedDate', pickedDate);
-    this.setState({
-      [pickedDate]: date,
-    });
-  }*/
 
   handleChangeMaxDate(event, date) {
     this.setState({
@@ -86,8 +78,18 @@ export default class Search extends React.Component {
   locationAutoComplete(event) {
     const input = event.target;
     if (!input) return;
-
     const suggestion = new google.maps.places.Autocomplete(input);
+    suggestion.addListener('place_changed', () => {
+      const place = suggestion.getPlace();
+      const lat = place.geometry.location.lat();
+      const lng = place.geometry.location.lng();
+      const location = place.formatted_address;
+      this.setState({
+        lat: lat,
+        lng: lng,
+        location: location,
+      });
+    });
   }
 
   search(event) {
@@ -145,7 +147,6 @@ export default class Search extends React.Component {
               floatingLabelText="End Date"
               value={this.state.endDate}
             />
-
             <RaisedButton label="Submit" primary={true} onClick={this.search} style={style.button} value="Submit" />
           </form>
         </Paper>
