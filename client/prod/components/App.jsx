@@ -42,8 +42,9 @@ class App extends React.Component {
       <MuiThemeProvider>
         <div>
           <Header auth={auth}/>
-          <Search />
           <Profile />
+          <Login auth={auth} />
+          <Search />
         </div>
       </MuiThemeProvider>
     );
