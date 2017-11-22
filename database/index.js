@@ -11,8 +11,9 @@ mongoose.connect(uri, {
 
 
 var Users = mongoose.Schema({
-  user_email: { type: String, unique: true},
-  user_name: { type: String, unique: true },
+  username: { type: String, unique: true},
+  email: { type: String, unique: true },
+  location: String,
   trips: {
     budget: {
       input_budget: Number,

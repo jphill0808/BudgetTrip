@@ -30,15 +30,15 @@ class Login extends Component {
       Lock.getUserInfo(authResult.accessToken, function(error, profile) {
         console.log("error", error, "profile", profile);
 
-        Axios.post('localhost:1130/api/signup', JSON.stringify(profile))
+        Axios.post('http://localhost:1130/api/signup', profile)
         .then(function(sucess) {
-          console.log(sucess);
+          console.log("user data", sucess);
         }) 
         .catch(function(error) {
           console.log(error);
         })
       });
-  
+      window.location.reload();
     });
 
     Lock.on('authorization_error', function(error) {
