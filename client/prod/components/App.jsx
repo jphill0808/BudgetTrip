@@ -9,8 +9,11 @@ import Auth from '../../../Auth/Auth.js';
 import Profile from './Header_Helpers/Profile.jsx';
 const auth = new Auth();
 
-auth.handleAuthentication();
 
+
+
+
+console.log(auth.isAuthenticated());
 const style = {
 
 }
@@ -22,32 +25,21 @@ class App extends React.Component {
       isLoggedIn: false,
     };
   }
-  // render() {
-  //   return (
-  //     <div>
-  //       <Login auth={auth}/>
-  //       <Search />
-  //     </div>
-  //   );
-  // }
+
   render() {
-    if (auth.isAuthenticated()) {
-      console.log('Authenticated');
+    if (!auth.isAuthenticated()) {
+      return (<Login auth={auth}/>)
     } else {
-      console.log('Login Page');
+      return (
+        <MuiThemeProvider>
+          <div>
+            <Header auth={auth}/>
+            <Search />
+            <Profile />
+          </div>
+        </MuiThemeProvider>
+      );
     }
-
-
-    return (
-      <MuiThemeProvider>
-        <div>
-          <Header auth={auth}/>
-          <Profile />
-          <Login auth={auth} />
-          <Search />
-        </div>
-      </MuiThemeProvider>
-    );
   }
 }
 export default App;
@@ -62,3 +54,13 @@ export default App;
       //     <Search />
       //   </div>
       // </BrowserRouter>
+
+
+      // render() {
+      //   return (
+      //     <div>
+      //       <Login auth={auth}/>
+      //       <Search />
+      //     </div>
+      //   );
+      // }

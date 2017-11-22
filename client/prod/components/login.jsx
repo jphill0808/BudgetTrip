@@ -3,7 +3,14 @@ import React, { Component } from 'react';
 // import { Navbar, Button } from 'react-bootstrap';
 import Auth0Lock from 'auth0-lock';
 import Auth from '../../../Auth/Auth.js';
+import Axios from 'axios';
+const Lock = require('../../../Auth/Auth.js').Lock;
+
+
 // import './App.css';
+
+
+
 
 class Login extends Component {
   constructor(props) {
@@ -11,6 +18,37 @@ class Login extends Component {
 
     this.login = this.login.bind(this);
   }
+
+  componentWillMount(){
+    const auth = new Auth();
+    auth.handleAuthentication();
+    Lock.on('authenticated', function(authResult) {
+      console.log('Result of authentication', authResult);
+
+      if (!authResult.accessToken) return;
+
+      Lock.getUserInfo(authResult.accessToken, function(error, profile) {
+        console.log("error", error, "profile", profile);
+
+        Axios.post('http://localhost:1130/api/signup', profile)
+        .then(function(sucess) {
+          console.log("user data", sucess);
+          window.location.reload();
+        }) 
+        .catch(function(error) {
+          console.log(error);
+        })
+      });
+     
+    });
+
+    Lock.on('authorization_error', function(error) {
+      console.log('authorization_error', error);
+    });
+
+    Lock.show();
+  }
+
 
   login() {
     this.props.auth.login();
