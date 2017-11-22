@@ -33,12 +33,13 @@ class Login extends Component {
         Axios.post('http://localhost:1130/api/signup', profile)
         .then(function(sucess) {
           console.log("user data", sucess);
+          window.location.reload();
         }) 
         .catch(function(error) {
           console.log(error);
         })
       });
-      window.location.reload();
+     
     });
 
     Lock.on('authorization_error', function(error) {
