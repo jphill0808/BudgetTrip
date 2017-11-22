@@ -38,6 +38,7 @@ class Header extends React.Component {
 
   handleLogout = () => {
     this.props.auth.logout();
+    window.location.reload();
   };
 
   render() {

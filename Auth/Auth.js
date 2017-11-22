@@ -4,46 +4,39 @@ import { AUTH_CONFIG } from './Auth0-variables.js';
 import Auth0Lock from 'auth0-lock';
 
 const lock = new Auth0Lock(AUTH_CONFIG.clientId, AUTH_CONFIG.domain, {
-  theme: {
-    logo: 'https://www.graphicsprings.com/filestorage/stencils/74cd6537a23f9e0bd1c4525d06517099.svg',
-    primaryColor: '#3A99D8'
-  },
-  allowedConnections: ['facebook']
-
-
-  // oidcConformant: false,
-  // autoclose: true,
-  // redirect: true,
-  // closable: true,
-  // allowSignUp: true,
-  // auth: {
-  //   //redirectUrl: keys.callbackUrl
-  //   responseType: 'token id_token',
-  //   scope: 'openid profile'
-  // }
+    domain: 'antonvs.auth0.com',
+    clientId: 'y5V78TK0JZBDdP70MEg5FsEHqlia1Rtn',
+    options: {
+      theme: {
+        logo: 'https://www.graphicsprings.com/filestorage/stencils/74cd6537a23f9e0bd1c4525d06517099.svg',
+        primaryColor: '#3A99D8',
+        socialButtonStyle: 'small'
+      },
+      allowedConnections: ['facebook'],
+      allowLogin: true,
+      loginAfterSignUp: true,
+      closable: true,
+      autoclose: true,
+      oidcConformant: false,
+      allowLogin: true,
+    
+    
+      auth: {
+        redirect: true,
+        redirectUrl: 'http://google.com'
+        // responseType: 'token id_token',
+        // scope: 'openid profile'
+      }
+    }
 });
 
-lock.on('authenticated', function(authResult) {
-  console.log('Result of authentication', authResult);
-
-  if (!authResult.accessToken) return;
-
-  lock.getUserInfo(authResult.accessToken, function(error, profile) {
-    console.log(error, profile);
-  });
-});
-
-lock.on('authorization_error', function(error) {
-  console.log('authorization_error', error);
-});
-
-// lock.show();
 
 
 export default class Auth {
   constructor() {
     // this.handleAuthentication();
     // binds functions to keep this context
+
     this.login = this.login.bind(this);
     this.logout = this.logout.bind(this);
     this.handleAuthentication = this.handleAuthentication.bind(this);
@@ -51,8 +44,7 @@ export default class Auth {
     this.setSession = this.setSession.bind(this);
   }
 
-  login() {
-    console.log('this' ,this);
+  login(email, password, callback) {
     lock.show();
   }
 
@@ -75,7 +67,7 @@ export default class Auth {
          localStorage.setItem('profile', JSON.stringify(profile));
          localStorage.setItem('idToken', authResult.idToken);
          // navigate to the home route
-         history.replace('/dashboard');
+      
        });
      }
   }
@@ -87,7 +79,7 @@ export default class Auth {
     localStorage.removeItem('idToken');
     localStorage.removeItem('profile');
     // navigate to the home route
-    history.replace('/login');
+
   }
 
   isAuthenticated() {
@@ -99,5 +91,4 @@ export default class Auth {
   }
 }
 
-
-// module.exports.Auth = Auth;
+module.exports.Lock = lock;

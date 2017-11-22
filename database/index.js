@@ -10,7 +10,10 @@ mongoose.connect(uri, {
   .catch((err) => {console.log(err)});
 
 
-var Trips = mongoose.Schema({
+var Users = mongoose.Schema({
+  user_email: { type: String, unique: true},
+  user_name: { type: String, unique: true },
+  trips: {
     budget: {
       input_budget: Number,
       budget_remaining: Number,
@@ -34,11 +37,13 @@ var Trips = mongoose.Schema({
         }
       }
     },
-    user_id: Number,
-    user_name: String,
     start_date: [Date],
     end_date: [Date],
     location: String,
     logs: [[]]
+  }
 });
 
+var User = mongoose.model('user', Users);
+
+module.exports.User = User;
