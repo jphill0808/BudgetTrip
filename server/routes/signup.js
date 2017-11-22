@@ -9,23 +9,25 @@ router.get('/', (req, res, next) => {
 });
 
 router.post('/', (req, res, next) => {
-	var name = req.body.name;
-	var location = req.body.location.name;
-	var email = req.body.email;
+	let data = {
+		username: req.body.name,
+		email: req.body.email
+	}
 
-	console.log(location);
-	var user = new db({
-		username: name,
-		email: email,
-		location: location
-	});
+	if (!req.body.hasOwnProperty('location')) {
+		data.location = 'Oakland, California';
+	} else {
+		data.location = req.body.location.name;
+	}
+
+	var user = new db(data);
 
 	user.save((err, user) => {
-		if (err) { console.log(err) } 
+		if (err) { console.log(err) }
 		else { console.log(user) }
 	})
 
-	res.end('USER DATA');
+	res.send(data);
 });
 
 module.exports.signup = router;

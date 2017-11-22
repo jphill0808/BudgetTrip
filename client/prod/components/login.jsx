@@ -2,15 +2,8 @@ var path = require('path');
 import React, { Component } from 'react';
 // import { Navbar, Button } from 'react-bootstrap';
 import Auth0Lock from 'auth0-lock';
-import Auth from '../../../Auth/Auth.js';
-import Axios from 'axios';
+import axios from 'axios';
 const Lock = require('../../../Auth/Auth.js').Lock;
-
-
-// import './App.css';
-
-
-
 
 class Login extends Component {
   constructor(props) {
@@ -20,8 +13,7 @@ class Login extends Component {
   }
 
   componentWillMount(){
-    const auth = new Auth();
-    auth.handleAuthentication();
+    this.props.auth.handleAuthentication();
     Lock.on('authenticated', function(authResult) {
       console.log('Result of authentication', authResult);
 
@@ -30,16 +22,16 @@ class Login extends Component {
       Lock.getUserInfo(authResult.accessToken, function(error, profile) {
         console.log("error", error, "profile", profile);
 
-        Axios.post('http://localhost:1130/api/signup', profile)
+        axios.post('http://localhost:1130/api/signup', profile)
         .then(function(sucess) {
           console.log("user data", sucess);
           window.location.reload();
-        }) 
+        })
         .catch(function(error) {
           console.log(error);
         })
       });
-     
+
     });
 
     Lock.on('authorization_error', function(error) {
@@ -67,7 +59,7 @@ export default Login;
 
 
 
-/* 
+/*
 <div className="login-page">
   <div className="row">
     <div className="col s12">

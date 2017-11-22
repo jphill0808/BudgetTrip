@@ -9,21 +9,31 @@ import Auth from '../../../Auth/Auth.js';
 import Profile from './Header_Helpers/Profile.jsx';
 const auth = new Auth();
 
-
-
-
-
-console.log(auth.isAuthenticated());
-const style = {
-
-}
+const style = {}
 
 class App extends React.Component {
   constructor(props)
 {    super(props);
     this.state = {
-      isLoggedIn: false,
+      user: {
+        username: '',
+        email: '',
+        location: ''
+      }
     };
+  }
+
+  componentDidMount() {
+    if (auth.isAuthenticated()) {
+      let localCookieProfile = JSON.parse(localStorage.getItem('profile'));
+
+      let user = {
+        username: localCookieProfile.name,
+        email: localCookieProfile.email,
+        location: 'California'
+      };
+      this.setState({user})
+    }
   }
 
   render() {
