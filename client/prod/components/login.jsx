@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import Auth0Lock from 'auth0-lock';
 import axios from 'axios';
 const Lock = require('../../../Auth/Auth.js').Lock;
+import About from './About.jsx';
 
 class Login extends Component {
   constructor(props) {
@@ -43,7 +44,7 @@ class Login extends Component {
 
 
   login() {
-    this.props.auth.login();
+    Lock.show();
   }
 
   render() {
@@ -52,36 +53,9 @@ class Login extends Component {
     return (<div className="login_container">
         <div className="logo_container"></div>
         <button className="login_button" onClick={this.login} >Login</button>
-        <div className="about-us">
-
-        </div>
+        <About />
       </div>);
   }
 }
 
 export default Login;
-
-
-
-/*
-<div className="login-page">
-  <div className="row">
-    <div className="col s12">
-      <div className="card white">
-        <div className="card-content blue-text">
-          <span className="card-title landing-title">Welcome to BudgetTrip!</span>
-        </div>
-        <div className="card-action landing">
-          <strong><a
-            style={{ cursor: 'pointer' }}
-            className="waves-effect red lighten-1 btn"
-            onClick={this.login}
-          >
-          Log In/Sign Up
-          </a></strong>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-*/
