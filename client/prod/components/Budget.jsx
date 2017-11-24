@@ -18,7 +18,7 @@ class Budget extends React.Component {
       budgetTotal: 0,
       moneyLeft: 0,
       moneySpent: 0,
-      activities: 0,
+      activities: [],
     }
   }
 
@@ -26,9 +26,11 @@ class Budget extends React.Component {
   render(){
     return (
       <div>
-        <h1>{`Total Budget: $${this.state.budgetTotal} Total Spent: $${this.state.moneySpent} Budget Left: $${this.state.moneyLeft}`}</h1>
         <Table >
           <TableHeader displaySelectAll={false}>
+            <TableRow>
+              <TableHeaderColumn colSpan="3" tooltip="BudgetTrip" style={{textAlign: 'center'}}>{<h1>{`Total Budget: $${this.state.budgetTotal} Total Spent: $${this.state.moneySpent} Budget Left: $${this.state.moneyLeft}`}</h1>}</TableHeaderColumn>
+            </TableRow>
             <TableRow >
               <TableHeaderColumn>Name</TableHeaderColumn>
               <TableHeaderColumn>Description</TableHeaderColumn>

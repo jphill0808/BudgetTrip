@@ -49,9 +49,13 @@ class Login extends Component {
   render() {
     const { isAuthenticated } = this.props.auth;
 
-    return (
-        <div>Login</div>
-      );
+    return (<div className="login_container">
+        <div className="logo_container"></div>
+        <button className="login_button" onClick={this.login} >Login</button>
+        <div className="about-us">
+
+        </div>
+      </div>);
   }
 }
 
