@@ -7,6 +7,8 @@ import Search from './Search.jsx';
 import Header from './Header.jsx';
 import Auth from '../../../Auth/Auth.js';
 import Profile from './Header_Helpers/Profile.jsx';
+import Budget from './Budget.jsx';
+
 const auth = new Auth();
 console.log(auth.isAuthenticated());
 const style = {
@@ -45,9 +47,10 @@ class App extends React.Component {
       return (
         <MuiThemeProvider>
           <div>
-            <Header auth={auth}/>
+            <Header auth={auth} user={this.state.user}/>
             <Search />
-            <Profile />
+            <Profile user={this.state.user}/>
+            <Budget />
           </div>
         </MuiThemeProvider>
       );
@@ -55,24 +58,3 @@ class App extends React.Component {
   }
 }
 export default App;
-
-
-      // <BrowserRouter>
-      //   <Route path="/" component={Login} ></Route>
-      //   <Route path="/login" render={(props) => { Login }}></Route>
-
-      //   <div>
-      //     <Login auth={auth}/>
-      //     <Search />
-      //   </div>
-      // </BrowserRouter>
-
-
-      // render() {
-      //   return (
-      //     <div>
-      //       <Login auth={auth}/>
-      //       <Search />
-      //     </div>
-      //   );
-      // }

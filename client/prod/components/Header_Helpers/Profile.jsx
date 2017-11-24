@@ -5,7 +5,7 @@ import Paper from 'material-ui/Paper';
 const Profile = (props) => {
   return (
     <div>
-      Hello I'm Profile Component. My parent Component is Header
+      Profile component lives here!
     </div>
   );
 };

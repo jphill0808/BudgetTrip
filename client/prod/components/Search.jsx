@@ -12,7 +12,7 @@ const style = {
     width: 500,
     margin: 20,
     textAlign: 'center',
-    display: 'inline-flex',
+    paddingTop: 20
   },
   container: {
     width: 100,
@@ -42,6 +42,7 @@ export default class Search extends React.Component {
     this.onChange = input => {
       this.setState({ input });
     };
+
     this.monitor = this.monitor.bind(this);
     this.search = this.search.bind(this);
     this.handleChangeMinDate = this.handleChangeMinDate.bind(this);

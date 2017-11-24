@@ -1,3 +1,55 @@
 .container {
   background-color: #ffffff;
 }
+
+.login_container {
+	width: 100vw;
+	height: 100vh;
+	background: url('../img/6.jpg');
+	background-size: cover;
+	position:relative;
+}
+
+.logo_container {
+	position: absolute;
+	width: 250px;
+	height: 250px;
+	background: url('../img/Untitled-2.png');
+	background-size: cover;
+	top: 100px;
+	left: calc(50% - 125px);
+	transform: scale(1.25);
+}
+
+.login_button {
+	position:absolute;
+	left: 10%;
+	top: 350px;
+	font-size: 20px;
+	padding: 10px;
+	background: #bd7d4b;
+	color: white;
+	position:absolute;
+	width :300px;
+	height:75px;
+  padding: 15px;
+}
+
+
+.about-us {
+	position: absolute;
+	top: 450px;
+	left: 10%;
+	width: 300px;
+	height: 375px;
+	background: #c32231;
+	border: 3px solid tan;
+	color: #bd7d4b;
+}
+
+.about-us h3 {
+	font-size: 2rem;
+	color: white;
+	margin: 0 0 10px 0;
+}
+
