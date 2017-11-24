@@ -49,7 +49,7 @@ class App extends React.Component {
           <div>
             <Header auth={auth} user={this.state.user}/>
             <Search />
-            <Profile user={this.state.user}/>
+            <Profile />
             <Budget />
           </div>
         </MuiThemeProvider>
