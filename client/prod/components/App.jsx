@@ -7,6 +7,8 @@ import Search from './Search.jsx';
 import Header from './Header.jsx';
 import Auth from '../../../Auth/Auth.js';
 import Profile from './Header_Helpers/Profile.jsx';
+import Budget from './Budget.jsx';
+
 const auth = new Auth();
 console.log(auth.isAuthenticated());
 const style = {
@@ -48,6 +50,7 @@ class App extends React.Component {
             <Header auth={auth}/>
             <Search />
             <Profile />
+            <Budget />
           </div>
         </MuiThemeProvider>
       );
