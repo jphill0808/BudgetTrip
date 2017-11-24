@@ -8,8 +8,10 @@ import Header from './Header.jsx';
 import Auth from '../../../Auth/Auth.js';
 import Profile from './Header_Helpers/Profile.jsx';
 const auth = new Auth();
+console.log(auth.isAuthenticated());
+const style = {
 
-const style = {}
+}
 
 class App extends React.Component {
   constructor(props)

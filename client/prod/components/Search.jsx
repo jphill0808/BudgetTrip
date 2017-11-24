@@ -12,7 +12,7 @@ const style = {
     width: 500,
     margin: 20,
     textAlign: 'center',
-    display: 'inline-block',
+    display: 'inline-flex',
   },
   container: {
     width: 100,
@@ -46,6 +46,9 @@ export default class Search extends React.Component {
     this.search = this.search.bind(this);
     this.handleChangeMinDate = this.handleChangeMinDate.bind(this);
     this.handleChangeMaxDate = this.handleChangeMaxDate.bind(this);
+    this.getTravel = this.getTravel.bind(this);
+    this.getFood = this.getFood.bind(this);
+    this.getEvents = this.getEvents.bind(this);
   }
 
   handleChangeMinDate(event, date) {
@@ -92,19 +95,31 @@ export default class Search extends React.Component {
     });
   }
 
+  getTravel(data) {
+    return axios.post('http://127.0.0.1:1130/api/travel/search', data);
+  }
+
+  getFood(data) {
+    return axios.post('http://127.0.0.1:1130/api/food/search', data);
+  }
+
+  getEvents(data) {
+    return axios.post('http://127.0.0.1:1130/api/events/search', data);
+  }
+
   search(event) {
     event.preventDefault();
-    axios({
-      method: 'post',
-      url: 'localhost:1130/search',
-      data: {
-        budget: this.state.budget,
-        location: this.state.location,
-        startDate: this.state.startDate,
-        endDate: this.state.endDate,
-        autoOk: true,
-      },
-    })
+    const data = {
+      budget: this.state.budget,
+      location: this.state.location,
+      startDate: this.state.startDate,
+      endDate: this.state.endDate,
+      lat: this.state.lat,
+      lng: this.state.lng,
+    };
+
+    axios
+      .all([this.getTravel(data), this.getFood(data), this.getEvents(data)])
       .then(data => {
         console.log(data);
       })
@@ -114,7 +129,6 @@ export default class Search extends React.Component {
   }
 
   render() {
-    console.log(this.state);
     return (
       <div className="container" style={style.container}>
         <Paper style={style.paper} zDepth={2}>

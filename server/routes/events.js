@@ -28,8 +28,6 @@ router.post('/', (req, res, next) => {
   // res.json('INSIDE FOOD!!');
 });
 
-
-
 module.exports.events = router;
 
 
