@@ -147,16 +147,3 @@ class Budget extends React.Component {
 }
 
 export default Budget;
-
-
-
-
-// let x = [] <----
-// concat
-// x.concat([{'id-1234': 22}]);
-//    0,     1
-// x.concat([{'id-1235', 11}]);
-//   2,         3
-// concat
-
-// x = [{'id-1234': 22} {'id-1235': 11}]
