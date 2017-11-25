@@ -8,23 +8,29 @@ import Header from './Header.jsx';
 import Auth from '../../../Auth/Auth.js';
 import Profile from './Header_Helpers/Profile.jsx';
 import Budget from './Budget.jsx';
+import Activities from './Activities.jsx';
 
 const auth = new Auth();
 console.log(auth.isAuthenticated());
-const style = {
-
-}
+const style = {};
 
 class App extends React.Component {
-  constructor(props)
-{    super(props);
+  constructor(props) {
+    super(props);
     this.state = {
       user: {
         username: '',
         email: '',
-        location: ''
-      }
+        location: '',
+      },
+      activities: {
+        events: [],
+        food: [],
+        travel: [],
+      },
     };
+
+    this.updateActivities = this.updateActivities.bind(this);
   }
 
   componentDidMount() {
@@ -34,22 +40,29 @@ class App extends React.Component {
       let user = {
         username: localCookieProfile.name,
         email: localCookieProfile.email,
-        location: 'California'
+        location: 'California',
       };
-      this.setState({user})
+      this.setState({ user });
     }
+  }
+
+  updateActivities(data) {
+    this.setState({
+      activities: data,
+    });
   }
 
   render() {
     if (!auth.isAuthenticated()) {
-      return (<Login auth={auth}/>)
+      return <Login auth={auth} />;
     } else {
       return (
         <MuiThemeProvider>
           <div>
             <Header auth={auth} user={this.state.user}/>
-            <Search />
+            <Search updateActivities={this.updateActivities} />
             <Profile />
+            <Activities activities={this.state.activities} />
             <Budget />
           </div>
         </MuiThemeProvider>

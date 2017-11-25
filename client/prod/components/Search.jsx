@@ -12,7 +12,8 @@ const style = {
     width: 500,
     margin: 20,
     textAlign: 'center',
-    paddingTop: 20
+    paddingTop: 20,
+    display: 'inline-flex',
   },
   container: {
     width: 100,
@@ -120,9 +121,15 @@ export default class Search extends React.Component {
     };
 
     axios
-      .all([this.getTravel(data), this.getFood(data), this.getEvents(data)])
+      .all([this.getEvents(data), this.getFood(data), this.getTravel(data)])
       .then(data => {
-        console.log(data);
+        // console.log('All Activities: --------> ', data);
+        const objForm = {};
+        objForm.events = data[0].data;
+        objForm.food = data[1].data;
+        objForm.travel = data[2].data;
+        console.log('in Object Form: -------->', objForm);
+        this.props.updateActivities(objForm);
       })
       .catch(error => {
         console.log(error);

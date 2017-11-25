@@ -17,7 +17,6 @@ router.post('/search', (req, res, next) => {
     headers: { 'x-api-key': sygicKEY },
   };
   const detectParentsUrl = `https://api.sygictravelapi.com/1.0/en/places/detect-parents?location=${lat},${lng}`;
-
   return axios
     .get(detectParentsUrl, config)
     .then(response => {
@@ -46,16 +45,29 @@ router.post('/search', (req, res, next) => {
         return axios
           .get(placeDetailsUrl + placeId, config)
           .then(response => {
+            console.log('RESPONSE DATA DATA---------->', response.data.data);
+            const placeId = response.data.data.place.id;
+            const name = response.data.data.place.name;
+            const perex = response.data.data.place.perex;
+            const email = response.data.data.place.email;
+            const phone = response.data.data.place.phone;
+            const admission = response.data.data.place.admission;
+            const star_rating = response.data.data.place.star_rating;
+            const opening_hours = response.data.data.place.opening_hours;
+            const picture = !response.data.data.place.main_media
+              ? 'Not Available'
+              : response.data.data.place.main_media.media[0].url;
             return {
-              placeId: {
-                name: response.data.data.place.name,
-                perex: response.data.data.place.perex,
-                email: response.data.data.place.email,
-                phone: response.data.data.place.phone,
-                admission: response.data.data.place.admission,
-                star_rating: response.data.data.place.star_rating,
-                opening_hours: response.data.data.place.opening_hours,
-                picture: response.data.data.place.main_media.media[0].url,
+              place: {
+                placeId,
+                name,
+                perex,
+                email,
+                phone,
+                admission,
+                star_rating,
+                opening_hours,
+                picture,
               },
             };
           })
@@ -65,7 +77,8 @@ router.post('/search', (req, res, next) => {
       });
 
       axios.all(placePromise).then(results => {
-        console.log(results);
+        // console.log('RESULTS-------->', results);
+        res.json(results);
       });
     })
     .catch(err => {
@@ -74,4 +87,3 @@ router.post('/search', (req, res, next) => {
 });
 
 module.exports.travel = router;
-
