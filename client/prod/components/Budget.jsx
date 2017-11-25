@@ -18,11 +18,10 @@ class Budget extends React.Component {
 
     this.state = {
       budgetTotal: 2000,
-      moneyLeft: moneyLeft,
+      moneyLeft: 0,
       moneySpent: 0,
       activities: [],
       value: 0,
-      fieldInputs: {},
       fields: {},
       table: {
         fixedHeader: true,
@@ -34,9 +33,6 @@ class Budget extends React.Component {
         height: '300px'
       }
     }
-
-    var moneyLeft = this.state.budgetTotal - this.state.moneySpent;
-
   };
 
   componentWillMount() {
@@ -49,7 +45,7 @@ class Budget extends React.Component {
     this.timer = null;
 
     this.setState({
-      moneyLeft: this.state.budgetTotal - this.state.moneySpent,
+      moneyLeft: this.state.budgetTotal,
       activities: [
         {name: 'Skydiving', description: 'Death is Certain', price: 100.00},
         {name: 'Bird Watching', description: 'Living on the edge', price: 0},
@@ -81,27 +77,22 @@ class Budget extends React.Component {
   }
 
   handlePriceInput = (target, targetValue, newVal) => {
-    // we get the initial event ie 5
-      // we wait 1 second for them to finisht yping 54123
-       // then we do everything below
-
+    // need to handle backspaced no value.
+      // might need to have a prev val state and a new val state
     let fields = Object.assign({}, this.state.fields);
     fields[target] = newVal;
     this.setState({fields})
     if (parseFloat(targetValue === NaN)) {
       this.setState({moneySpent: 0 })
     }
-    let moneyLeft = this.state.budgetTotal - this.state.moneySpent;
 
     this.setState({
       value: targetValue,
-      moneySpent: this.state.moneySpent + parseFloat(targetValue),
-      moneyLeft: moneyLeft
+      moneySpent: this.state.moneySpent + parseFloat(targetValue)
+    }, function() {
+      this.setState({moneyLeft: this.state.budgetTotal - this.state.moneySpent})
     });
-
   };
-
-
 
   render(){
     return (
@@ -142,7 +133,6 @@ class Budget extends React.Component {
                 <TextField
                   key={`${idx}`}
                   id={`${activity.name}`}
-                  value={this.state.fieldInputs[activity.name]}
                   onChange={(e, newVal) => {this.handleThrottledInput(e, newVal)}}
                   type="number"
                   />
