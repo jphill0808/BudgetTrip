@@ -27,7 +27,7 @@ var Users = new mongoose.Schema({
       price: Number
     })],
     logs: [[]]
-  }, 
+  },
 
   tripsHistory: []
 });
@@ -35,12 +35,6 @@ var Users = new mongoose.Schema({
 
 
 var User = mongoose.model('user', Users);
-
-var sampleUser = {
-  username: 'Mark',
-  email: 'Markus1998@yahoo.com',
-  location: 'Sandy Springs'
-}
 
 let saveUser = ((user, cb) => {
   let newUser = new User({
@@ -62,15 +56,22 @@ let saveUser = ((user, cb) => {
   });
 
   newUser.save((err, data) => {
-    if (err) { cb(err) } 
+    if (err) { cb(err) }
     else { console.log(data) }
   });
 })
 
+
+/*var sampleUser = {
+  username: 'Mark',
+  email: 'Markus1998@yahoo.com',
+  location: 'Sandy Springs'
+}
+
 saveUser(sampleUser, (err, data) => {
   if (err) console.log(err);
 });
-
+*/
 
 module.exports.User = User;
 
