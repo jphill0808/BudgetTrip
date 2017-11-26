@@ -10,11 +10,13 @@ const style = {
   paper: {
     height: 500,
     width: 500,
-    margin: 20,
+    marginTop: 20,
+
     textAlign: 'center',
     paddingTop: 20,
   },
   container: {
+    marginLeft: 20,
     width: 100,
   },
   button: {

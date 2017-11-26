@@ -25,7 +25,9 @@ router.post('/', (req, res, next) => {
 	user.save((err, user) => {
 		if (err) { console.log(err) }
 		else { console.log(user) }
-	})
+	});
+
+	res.send('Completed Signup...');
 });
 
 module.exports.signup = router;

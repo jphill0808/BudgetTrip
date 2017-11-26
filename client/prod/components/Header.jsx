@@ -5,6 +5,7 @@ import Paper from 'material-ui/Paper';
 import RaisedButton from 'material-ui/RaisedButton';
 import Menu from 'material-ui/Menu';
 import MenuItem from 'material-ui/MenuItem';
+import Profile from './Profile.jsx';
 
 const style = {
   display: 'flex',
@@ -17,6 +18,7 @@ class Header extends React.Component {
 
     this.state = {
       open: false,
+      displayProfile: false
     }
     this.handleLogout = this.handleLogout.bind(this);
   };
@@ -41,6 +43,8 @@ class Header extends React.Component {
     window.location.reload();
   };
 
+
+
   render() {
     return (
       <div>
@@ -63,6 +67,8 @@ class Header extends React.Component {
             </Menu>
           </Paper>
         </Popover>
+
+
       </div>
       )
   }

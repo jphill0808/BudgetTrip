@@ -33,12 +33,8 @@ router.post('/', (req, res, next) => {
 			console.log('data SAVED!!', data);
 		})
 	});
-	// user.save((err, user) => {
-	// 	if (err) { console.log(err) }
-	// 	else { console.log(user) }
-	// })
 
-	// res.send(data);
+	res.send('Added Trip Data...');
 });
 
 module.exports.searchData = router;

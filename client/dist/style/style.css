@@ -52,3 +52,14 @@
 	color: white;
 	margin: 0 0 10px 0;
 }
+
+.budget {
+	position: fixed;
+	bottom: 0vh;
+
+}
+
+.top-section {
+	background: url('../img/Perone.jpg');
+	background-size: cover;
+}

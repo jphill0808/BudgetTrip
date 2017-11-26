@@ -59,11 +59,10 @@ class App extends React.Component {
       return (
         <MuiThemeProvider>
           <div>
-          
+            <div className="top-section">
             <Header auth={auth} user={this.state.user}/>
             <Search updateActivities={this.updateActivities} user={this.state.user}/>
-
-            <Profile />
+            </div>
             <Activities activities={this.state.activities} user={this.state.user} />
             <Budget />
           </div>

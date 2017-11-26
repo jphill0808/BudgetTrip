@@ -30,7 +30,7 @@ class Budget extends React.Component {
         showRowHover: false,
         selectable: false,
         showCheckboxes: false,
-        height: '300px'
+     
       }
     }
   };
@@ -96,7 +96,7 @@ class Budget extends React.Component {
 
   render(){
     return (
-      <div>
+      <div className="budget">
         <Table
           height={this.state.table.height}
           fixedHeader={this.state.table.fixedHeader}
