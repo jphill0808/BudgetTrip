@@ -22,16 +22,14 @@ var Users = new mongoose.Schema({
     input_budget: Number,
     budget_remaining: Number,
     location: String,
-    start_date: [Date],
-    end_date: [Date],
-    activities: [
-      new mongoose.Schema({
-        name: { type: String, unique: true },
-        description: String,
-        price: Number,
-      }),
-    ],
-    logs: [[]],
+    start_date: Date,
+    end_date: Date,
+    activities: [new mongoose.Schema({
+      name: { type: String, unique: true },
+      description: String,
+      price: Number
+    })],
+    logs: [[]]
   },
 
   tripsHistory: [],

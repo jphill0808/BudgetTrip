@@ -2,6 +2,7 @@ var travel = require('./routes/travel.js').travel;
 var food = require('./routes/food.js').food;
 var events = require('./routes/events.js').events;
 var signup = require('./routes/signup.js').signup;
+var searchData = require('./routes/search-data.js').searchData;
 
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -18,6 +19,7 @@ app.use('/api/travel', travel);
 app.use('/api/food', food);
 app.use('/api/events', events);
 app.use('/api/signup', signup);
+app.use('/api/search-data', searchData);
 
 app.get('/', (req, res) => {
   res.json('hello world');

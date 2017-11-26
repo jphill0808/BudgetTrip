@@ -59,7 +59,6 @@ router.post('/search', (req, res, next) => {
         return axios
           .get(placeDetailsUrl + placeId, config)
           .then(response => {
-            // console.log('RESPONSE DATA DATA---------->', response.data.data);
             const placeId = response.data.data.place.id;
             const name = response.data.data.place.name;
             const perex = response.data.data.place.perex;
