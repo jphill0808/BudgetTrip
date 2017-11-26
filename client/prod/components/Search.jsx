@@ -13,7 +13,6 @@ const style = {
     margin: 20,
     textAlign: 'center',
     paddingTop: 20,
-    display: 'inline-flex',
   },
   container: {
     width: 100,
@@ -128,7 +127,7 @@ export default class Search extends React.Component {
         objForm.events = data[0].data;
         objForm.food = data[1].data;
         objForm.travel = data[2].data;
-        console.log('in Object Form: -------->', objForm);
+        //console.log('in Object Form: -------->', objForm);
         this.props.updateActivities(objForm);
       })
       .catch(error => {

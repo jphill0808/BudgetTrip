@@ -1,16 +1,30 @@
 const express = require('express');
-
 const router = express.Router();
 const axios = require('axios');
 const sygicKEY = require('../../config.js')._sygicKEY;
+const saveActivity = require('../../database/index.js').saveActivity;
 
 router.get('/', (req, res, next) => {
   res.json('INSIDE TRAVEL!');
 });
 
+router.post('/add', (req, res, next) => {
+  // console.log('REQUEST BODY on ADD PLACE', req.body);
+  //req.body ---> {user, activity }
+  const user = req.body.user.username;
+  const activity = {
+    name: req.body.travel.name,
+    description: req.body.travel.perex,
+    price: null,
+  };
+  // console.log('user: ', user);
+  // console.log('activity: ', activity);
+  saveActivity(user, activity);
+});
+
 // TODO: figure out a path for search
 router.post('/search', (req, res, next) => {
-  console.log('REQUEST BODY ------->', req.body);
+  // console.log('REQUEST BODY ------->', req.body);
   const lat = req.body.lat;
   const lng = req.body.lng;
   const config = {
@@ -45,7 +59,7 @@ router.post('/search', (req, res, next) => {
         return axios
           .get(placeDetailsUrl + placeId, config)
           .then(response => {
-            console.log('RESPONSE DATA DATA---------->', response.data.data);
+            // console.log('RESPONSE DATA DATA---------->', response.data.data);
             const placeId = response.data.data.place.id;
             const name = response.data.data.place.name;
             const perex = response.data.data.place.perex;

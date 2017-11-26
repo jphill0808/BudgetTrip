@@ -3,10 +3,22 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const axios = require('axios');
 const zomatoKEY = require('../../config.js')._zomatoKEY;
+const saveActivity = require('../../database/index.js').saveActivity;
 
 const config = {
   headers: { 'user-key': `${zomatoKEY}` },
 };
+
+router.post('/add', (req, res, next) => {
+  console.log('REQ BODY OF FOOD IS HEREEEEEEEEEEEEEE: ', JSON.stringify(req.body, null, 2));
+  const user = req.body.user.username;
+  const food = {
+    name: req.body.food.name,
+    description: req.body.food.cuisine,
+    price: null,
+  };
+  saveActivity(user, food);
+});
 
 router.post('/search', (req, res, next) => {
   const lat = req.body.lat;

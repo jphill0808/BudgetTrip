@@ -1,10 +1,21 @@
 import React from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
+import axios from 'axios';
 
 class Travel extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.addPlace = this.addPlace.bind(this);
+  }
+
+  addPlace() {
+    const data = {
+      user: this.props.user,
+      travel: this.props.travel.place,
+    };
+    axios.post('http://127.0.0.1:1130/api/travel/add', data).then(data => {
+      console.log('clicked data =============>', data);
+    });
   }
 
   render() {
@@ -16,7 +27,7 @@ class Travel extends React.Component {
         <p>{this.props.travel.place.admission}</p>
         <p>{this.props.travel.place.star_rating}</p>
         <p>{this.props.travel.place.opening_hours}</p>
-        <RaisedButton label="Add" primary={true} />
+        <RaisedButton onClick={this.addPlace} label="Add Place" primary={true} />
       </div>
     );
   }

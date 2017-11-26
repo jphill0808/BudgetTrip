@@ -5,6 +5,7 @@ const axios = require('axios');
 const yelpAuthKEY = require('../../config.js')._yelpAuthKEY;
 const clientAuthID = require('../../config.js')._yelpAuthClientId;
 const yelpKEY = require('../../config.js')._yelpEventKey;
+const saveActivity = require('../../database/index.js').saveActivity;
 
 const config = {
   headers: {
@@ -12,6 +13,18 @@ const config = {
   },
 };
 
+router.post('/add', (req, res, next) => {
+  console.log('got the events')
+  console.log(req.body.event)
+  const user = req.body.user.username;
+  const event = {
+    name: req.body.event.name,
+    description: req.body.event.description,
+    price: req.body.event.cost || null
+  };
+  saveActivity(user, event);
+
+})
 router.post('/search', (req, res, next) => {
   const lat = req.body.lat;
   const lng = req.body.lng;

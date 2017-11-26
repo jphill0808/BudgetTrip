@@ -30,21 +30,21 @@ export default class Activities extends React.Component {
           <Tab label="Travel">
             <div>
               {this.props.activities.travel.map(travel => {
-                return <Travel key={travel.place.placeId} travel={travel} />;
+                return <Travel key={travel.place.placeId} travel={travel} user={this.props.user} />;
               })}
             </div>
           </Tab>
           <Tab label="Food">
             <div>
               {this.props.activities.food.map(restaurant => {
-                return <Food key={restaurant.restaurant.id} restaurant={restaurant} />;
+                return <Food key={restaurant.restaurant.id} restaurant={restaurant} user={this.props.user} />;
               })}
             </div>
           </Tab>
           <Tab label="Events">
             <div>
               {this.props.activities.events.map(event => {
-                return <Events key={event.id} event={event} />;
+                return <Events key={event.id} event={event} user={this.props.user} />;
               })}
             </div>
           </Tab>
