@@ -16,35 +16,54 @@ const styles = {
 export default class Activities extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      activeTab: 'a',
-    };
   }
 
   render() {
-    // console.log('ACTIVITIES----->', this.props.activities.restaurant);
-    // console.log('state: ', this.state);
     return (
       <div>
         <Tabs>
           <Tab label="Travel">
             <div>
               {this.props.activities.travel.map(travel => {
-                return <Travel key={travel.place.placeId} travel={travel} user={this.props.user} />;
+                return (
+                  <Travel
+                    id={travel.place.placeId}
+                    key={travel.place.placeId}
+                    travel={travel}
+                    user={this.props.user}
+                    selector={this.props.selector}
+                  />
+                );
               })}
             </div>
           </Tab>
           <Tab label="Food">
             <div>
               {this.props.activities.food.map(restaurant => {
-                return <Food key={restaurant.restaurant.id} restaurant={restaurant} user={this.props.user} />;
+                return (
+                  <Food
+                    id={restaurant.restaurant.id}
+                    key={restaurant.restaurant.id}
+                    restaurant={restaurant}
+                    user={this.props.user}
+                    selector={this.props.selector}
+                  />
+                );
               })}
             </div>
           </Tab>
           <Tab label="Events">
             <div>
               {this.props.activities.events.map(event => {
-                return <Events key={event.id} event={event} user={this.props.user} />;
+                return (
+                  <Events
+                    id={event.id}
+                    key={event.id}
+                    event={event}
+                    user={this.props.user}
+                    selector={this.props.selector}
+                  />
+                );
               })}
             </div>
           </Tab>

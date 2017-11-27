@@ -1,11 +1,32 @@
 import React from 'react';
-import RaisedButton from 'material-ui/RaisedButton';
+import Checkbox from 'material-ui/Checkbox';
+import Paper from 'material-ui/Paper';
+import ActionFavorite from 'material-ui/svg-icons/action/favorite';
+import ActionFavoriteBorder from 'material-ui/svg-icons/action/favorite-border';
 import axios from 'axios';
+
+const styles = {
+  block: {
+    maxWidth: 250,
+  },
+  favoriteCheckbox: {
+    marginBottom: 16,
+  },
+  paper: {
+    margin: 20,
+    display: 'inline-block',
+  },
+};
 
 class Travel extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      checked: false,
+    };
     this.addPlace = this.addPlace.bind(this);
+    this.updateCheck = this.updateCheck.bind(this);
+    this.updateSelected = this.updateSelected.bind(this);
   }
 
   addPlace() {
@@ -18,16 +39,54 @@ class Travel extends React.Component {
     });
   }
 
+  updateCheck(e) {
+    let hold = e;
+    this.setState(oldState => {
+      return {
+        checked: !oldState.checked,
+      };
+    });
+    this.updateSelected(hold);
+  }
+
+  updateSelected(e) {
+    let price;
+    if (!parseFloat(this.props.travel.place.admission)) {
+      price = null;
+    } else {
+      price = this.props.travel.place.admission;
+    }
+    let data = {
+      id: `${this.props.id}`,
+      name: `${this.props.travel.place.name}`,
+      description: `${this.props.travel.place.perex}`,
+      price: `${price}`,
+      checked: `${!this.state.checked}`,
+    };
+    this.props.selector(data);
+  }
+
   render() {
     return (
       <div>
-        <img src={this.props.travel.place.picture} alt={this.props.travel.place.name} />
-        <h3>{this.props.travel.place.name}</h3>
-        <p>{this.props.travel.place.perex}</p>
-        <p>{this.props.travel.place.admission}</p>
-        <p>{this.props.travel.place.star_rating}</p>
-        <p>{this.props.travel.place.opening_hours}</p>
-        <RaisedButton onClick={this.addPlace} label="Add Place" primary={true} />
+        <Paper styles={styles.paper} zDepth={5}>
+          <img src={this.props.travel.place.picture} alt={this.props.travel.place.name} />
+          <h3>{this.props.travel.place.name}</h3>
+          <p>{this.props.travel.place.perex}</p>
+          <p>{this.props.travel.place.admission}</p>
+          <p>{this.props.travel.place.star_rating}</p>
+          <p>{this.props.travel.place.opening_hours}</p>
+          <Checkbox
+            id={this.props.id}
+            checkedIcon={<ActionFavorite />}
+            uncheckedIcon={<ActionFavoriteBorder />}
+            label="Add Place"
+            style={styles.checkbox}
+            onCheck={e => {
+              this.updateCheck(e);
+            }}
+          />
+        </Paper>
       </div>
     );
   }

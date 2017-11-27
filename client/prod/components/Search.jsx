@@ -111,7 +111,7 @@ export default class Search extends React.Component {
   }
 
   saveData(data) {
-    return axios.post('http://127.0.0.1:1130/api/search-data', data); 
+    return axios.post('http://127.0.0.1:1130/api/search-data', data);
   }
 
   search(event) {
@@ -123,18 +123,16 @@ export default class Search extends React.Component {
       endDate: this.state.endDate,
       lat: this.state.lat,
       lng: this.state.lng,
-      user: this.props.user.username
+      user: this.props.user.username,
     };
 
     axios
       .all([this.getEvents(data), this.getFood(data), this.getTravel(data), this.saveData(data)])
       .then(data => {
-        console.log('All Activities: --------> ', data);
         const objForm = {};
         objForm.events = data[0].data;
         objForm.food = data[1].data;
         objForm.travel = data[2].data;
-        //console.log('in Object Form: -------->', objForm);
         this.props.updateActivities(objForm);
       })
       .catch(error => {
@@ -143,6 +141,12 @@ export default class Search extends React.Component {
   }
 
   render() {
+    const data = {
+      budget: this.state.budget,
+    };
+    let self = this;
+    let tempBudget = this.state.budget;
+
     return (
       <div className="container" style={style.container}>
         <Paper style={style.paper} zDepth={2}>
@@ -175,7 +179,16 @@ export default class Search extends React.Component {
               floatingLabelText="End Date"
               value={this.state.endDate}
             />
-            <RaisedButton label="Submit" primary={true} onClick={this.search} style={style.button} value="Submit" />
+            <RaisedButton
+              label="Submit"
+              primary={true}
+              onClick={function(e) {
+                self.search(e);
+                self.props.updateInput(data);
+              }}
+              style={style.button}
+              value="Submit"
+            />
           </form>
         </Paper>
       </div>

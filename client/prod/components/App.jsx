@@ -11,7 +11,6 @@ import Budget from './Budget.jsx';
 import Activities from './Activities.jsx';
 
 const auth = new Auth();
-console.log(auth.isAuthenticated());
 const style = {};
 
 class App extends React.Component {
@@ -28,9 +27,15 @@ class App extends React.Component {
         food: [],
         travel: [],
       },
+      input: {
+        budget: 0,
+      },
+      selectedActivities: {},
     };
 
     this.updateActivities = this.updateActivities.bind(this);
+    this.addSelectActivity = this.addSelectActivity.bind(this);
+    this.updateInput = this.updateInput.bind(this);
   }
 
   componentDidMount() {
@@ -46,10 +51,28 @@ class App extends React.Component {
     }
   }
 
+  updateInput(data) {
+    const budget = parseFloat(data.budget);
+    this.setState({
+      input: { budget },
+    });
+  }
+
   updateActivities(data) {
     this.setState({
       activities: data,
     });
+  }
+
+  addSelectActivity(data) {
+    let selectedActivities = Object.assign({}, this.state.selectedActivities);
+    if (data.checked === 'true') {
+      selectedActivities[data.id] = data;
+      this.setState({ selectedActivities });
+    } else {
+      delete selectedActivities[data.id];
+      this.setState({ selectedActivities });
+    }
   }
 
   render() {
@@ -60,11 +83,11 @@ class App extends React.Component {
         <MuiThemeProvider>
           <div>
             <div className="top-section">
-            <Header auth={auth} user={this.state.user}/>
-            <Search updateActivities={this.updateActivities} user={this.state.user}/>
+              <Header auth={auth} user={this.state.user} />
+              <Search updateActivities={this.updateActivities} user={this.state.user} updateInput={this.updateInput} />
             </div>
-            <Activities activities={this.state.activities} user={this.state.user} />
-            <Budget />
+            <Activities selector={this.addSelectActivity} activities={this.state.activities} user={this.state.user} />
+            <Budget selectedTrip={this.state.selectedActivities} budget={this.state.input.budget} />
           </div>
         </MuiThemeProvider>
       );
