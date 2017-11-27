@@ -9,8 +9,7 @@
   * Basic System Requirements - (Node 6.X, Mongo, NPM)
   * Fork the base repo
   * run the **"npm install"** command in an instance of terminal
-  * contact an admin for the API_KEYS email list. @ hey_arnold_iz_da_b3st@gmail.com
-  * Open 3 instances of terminal
+  * contact an admin for the API_KEYS email list. @ mailto:heyarnoldizdab3st@gmail.com
   * run the **"mongod"** command
   * run the **"npm run dev-server"** command
   * run the **"npm start"** command
