@@ -21,3 +21,5 @@
 * A beautiful UI designed with the UX in mind.
 * BudgetTrip provides activities (travel/food/events) for your selected destination.
 * A budget designer that helps you plan your spending over the course of the trip.
+
+<img src="https://s3-us-west-1.amazonaws.com/hackreactor27/Components_diagram.png" alt="Component Map" style="width: 200px;"/>
