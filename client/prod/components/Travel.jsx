@@ -1,6 +1,5 @@
 import React from 'react';
 import Checkbox from 'material-ui/Checkbox';
-import Paper from 'material-ui/Paper';
 import ActionFavorite from 'material-ui/svg-icons/action/favorite';
 import ActionFavoriteBorder from 'material-ui/svg-icons/action/favorite-border';
 import axios from 'axios';
@@ -14,7 +13,6 @@ const styles = {
   },
   paper: {
     margin: 20,
-
   },
 };
 
