@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Popover from 'material-ui/Popover'
+import Popover from 'material-ui/Popover';
 import Paper from 'material-ui/Paper';
 import RaisedButton from 'material-ui/RaisedButton';
 import DropDownMenu from 'material-ui/Menu';
@@ -12,8 +12,8 @@ const style = {
   margin: '16, 32, 16, 0',
   style: {
     color: 'white',
-    background: 'green'
-  }
+    background: 'green',
+  },
 };
 
 class Header extends React.Component {
@@ -22,23 +22,23 @@ class Header extends React.Component {
 
     this.state = {
       open: false,
-      displayProfile: false
-    }
+      displayProfile: false,
+    };
     this.handleLogout = this.handleLogout.bind(this);
-  };
+  }
 
-  handleTouchTap = (event) => {
+  handleTouchTap = event => {
     event.preventDefault();
 
     this.setState({
       open: true,
-      anchorEl: event.currentTarget
+      anchorEl: event.currentTarget,
     });
   };
 
   handleRequestClose = () => {
     this.setState({
-      open: false
+      open: false,
     });
   };
 
@@ -47,35 +47,32 @@ class Header extends React.Component {
     window.location.reload();
   };
 
-
-
   render() {
     return (
       <div className="header_container">
-        <a class="header_logo--button" href="/"/>
-        <RaisedButton className="nav_menu"
-          onClick={this.handleTouchTap}
-          label="Account Info"
-        />
-        <Popover 
+        <a class="header_logo--button" href="/" />
+        <RaisedButton className="nav_menu" onClick={this.handleTouchTap} label="Account Info" />
+        <Popover
           open={this.state.open}
           anchorEl={this.state.anchorEl}
-          anchorOrigin={{horizontal: 'left', vertical: 'bottom'}}
-          targetOrigin={{horizontal: 'left', vertical: 'top'}}
-          onRequestClose={this.handleRequestClose}
-        >
+          anchorOrigin={{ horizontal: 'left', vertical: 'bottom' }}
+          targetOrigin={{ horizontal: 'left', vertical: 'top' }}
+          onRequestClose={this.handleRequestClose}>
           <Paper style={style}>
             <DropDownMenu>
               <MenuItem primaryText="Trip History" />
               <MenuItem primaryText="User Profile" />
-              <MenuItem onClick={(e) => {this.handleLogout(e)}} primaryText="Logout" />
+              <MenuItem
+                onClick={e => {
+                  this.handleLogout(e);
+                }}
+                primaryText="Logout"
+              />
             </DropDownMenu>
           </Paper>
         </Popover>
-
-
       </div>
-      )
+    );
   }
 }
 

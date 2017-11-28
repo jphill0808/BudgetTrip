@@ -28,8 +28,6 @@ class Budget extends React.Component {
     };
   }
 
-  componentWillMount() {}
-
   componentDidMount() {
     this.timer = null;
   }
@@ -111,7 +109,7 @@ class Budget extends React.Component {
     let negativeStyle = {
       color: this.state.negative ? 'red' : 'black',
       textAlign: 'center',
-      backgroundColor: 'tan'
+      backgroundColor: 'tan',
     };
     let selectedTrip = this.state.activities;
 

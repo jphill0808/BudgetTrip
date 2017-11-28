@@ -76,7 +76,9 @@ export default class Events extends React.Component {
         <p className="event_title">Event: {this.props.event.name}</p>
         <p className="event_perex">Description: {this.props.event.description}</p>
         <p className="event_price">Cost: {this.props.event.cost}</p>
-        <p className="event_hours">Start time: {this.props.event.time_start} --- End time: {this.props.event.time_end}</p>
+        <p className="event_hours">
+          Start time: {this.props.event.time_start} --- End time: {this.props.event.time_end}
+        </p>
         <Checkbox
           className="event_addButton"
           id={this.props.id}
