@@ -3,7 +3,7 @@ const path = require('path');
 
 module.exports = {
   context: __dirname + '/client/prod',
-  entry: './index.jsx',
+  entry: ['webpack-hot-middleware/client?reload=true', './index.jsx'],
   module: {
     loaders: [
       {
@@ -21,4 +21,10 @@ module.exports = {
     path: __dirname + '/client/dist',
     filename: 'budgetTripBundle.min.js',
   },
+  plugins: [
+    new webpack.optimize.OccurrenceOrderPlugin(),
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoEmitOnErrorsPlugin(),
+  ],
+  devtool: 'inline-source-map'
 };

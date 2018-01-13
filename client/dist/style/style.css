@@ -135,7 +135,7 @@ tbody td {
 	justify-items: center;
 	grid-template-columns: [one] 550px [two] auto;
 	grid-gap: 7px 25px;
-	grid-template-rows: [row-one] 100px [row-two] 15% [row-three] 25% [row-four] auto;
+	grid-template-rows: [row-one] auto [row-two] auto [row-three] auto [row-four] auto;
 	width: 85%;
 	overflow: hidden;
 	margin: 15px auto;
@@ -149,7 +149,7 @@ tbody td {
 }
 
 .travel_container:nth-child(even), .food_container:nth-child(even), .event_container:nth-child(even) {
-	background: #E0E0E0;
+	background: tan;
 }
 
 .travelImg_container, .foodImg_container, .eventImg_container {
@@ -176,7 +176,7 @@ tbody td {
 .travelImg_container:hover, .foodImg_container:hover, .eventImg_container:hover {
 transition: 1s;
 filter: sepia(60%);
-overflow: visible;
+overflow: hidden;
 }
 
 .travel_title, .travel_perex, .travel_price, .travel_hours {
