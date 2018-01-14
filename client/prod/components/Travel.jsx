@@ -32,7 +32,7 @@ class Travel extends React.Component {
       user: this.props.user,
       travel: this.props.travel.place,
     };
-    axios.post('http://127.0.0.1:1130/api/travel/add', data).then(data => {
+    axios.post('/api/travel/add', data).then(data => {
       console.log('clicked data =============>', data);
     });
   }

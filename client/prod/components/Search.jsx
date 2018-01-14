@@ -101,19 +101,19 @@ export default class Search extends React.Component {
   }
 
   getTravel(data) {
-    return axios.post('http://127.0.0.1:1130/api/travel/search', data);
+    return axios.post('/api/travel/search', data);
   }
 
   getFood(data) {
-    return axios.post('http://127.0.0.1:1130/api/food/search', data);
+    return axios.post('/api/food/search', data);
   }
 
   getEvents(data) {
-    return axios.post('http://127.0.0.1:1130/api/events/search', data);
+    return axios.post('/api/events/search', data);
   }
 
   saveData(data) {
-    return axios.post('http://127.0.0.1:1130/api/search-data', data);
+    return axios.post('/api/search-data', data);
   }
 
   search(event) {
