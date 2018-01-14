@@ -33,7 +33,7 @@ export default class Food extends React.Component {
       user: this.props.user,
       food: this.props.restaurant.restaurant,
     };
-    axios.post('http://127.0.0.1:1130/api/food/add', data).then(data => {
+    axios.post('/api/food/add', data).then(data => {
       console.log('clicked the food item;');
     });
   }
