@@ -1,1 +1,1 @@
-worker: node ./server/app.js --inspect | ./node_modules/.bin/webpack-dev-server --config ./webpack.config.js
+worker: ./node_modules/.bin/webpack-dev-server --config ./webpack.config.js
