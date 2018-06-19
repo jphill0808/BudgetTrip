@@ -4,10 +4,10 @@
   "description": "Travel on a budget!",
   "main": "webpack.config.js",
   "scripts": {
-    "build": "webpack --config ./webpack.config.js --progress --colors",
     "heroku":"./node_modules/.bin/webpack -d --watch | node server/index.js --inspect",
-    "postinstall": "npm run build",
-    "start": "./node_modules/.bin/webpack-dev-server --content-base ./client/dist --inline --hot",
+    "postinstall": "webpack -p",
+    "start": "node ./server/app.js",
+    "start-dev": "./node_modules/.bin/webpack-dev-server --content-base ./client/dist --inline --hot",
     "dev-server": "nodemon --inspect ./server/app.js",
     "heroku-postbuild": "webpack -p --config ./webpack.config.js --progress",
     "test": "echo \"Error: no test specified\" && exit 1"
