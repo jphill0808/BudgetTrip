@@ -1,1 +1,1 @@
-web: ./node_modules/.bin/webpack -d --watch | node server/app.js --inspect
+web: ./node_modules/webpack-dev-server/bin/webpack-dev-server.js
