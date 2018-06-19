@@ -1,1 +1,1 @@
-worker: ./node_modules/.bin/webpack-dev-server --config ./webpack.config.js
+web: ./node_modules/.bin/webpack-dev-server --config ./webpack.config.js
