@@ -3,9 +3,6 @@
   "version": "1.0.0",
   "description": "Travel on a budget!",
   "main": "webpack.config.js",
-  "engines": {
-    "node": "8.9.3"
-  },
   "scripts": {
     "start": "./node_modules/.bin/webpack-dev-server --content-base ./client/dist --inline --hot",
     "dev-server": "nodemon --inspect ./server/app.js",

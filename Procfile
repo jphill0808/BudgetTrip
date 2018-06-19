@@ -1,1 +1,1 @@
-worker: ./node_modules/.bin/webpack-dev-server --content-base ./client/dist --inline --hot | node ./server/app.js --inspect
+worker: node ./server/app.js --inspect | ./node_modules/.bin/webpack-dev-server --content-base ./client/dist --inline --hot
