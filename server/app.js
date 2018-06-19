@@ -23,7 +23,7 @@ const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
 const config = require('../webpack.config');
 
-const port = process.env.PORT || 5422;
+const port = process.env.PORT || 1337;
 
 
 const compiler = webpack(config);
@@ -52,6 +52,6 @@ app.get('/*', (req, res) => {
 	res.sendFile(path.join(__dirname, '/../client/dist/index.html'))
 })
 
-app.listen(process.env.PORT || 1337, () => {
-  console.log('Express is listening on port 1130');
+app.listen(port, () => {
+  console.log('Express is listening on port 1137');
 });
