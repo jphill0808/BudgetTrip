@@ -4,7 +4,7 @@
   "description": "Travel on a budget!",
   "main": "webpack.config.js",
   "scripts": {
-    "postinstall": "webpack -p",
+    "heroku-postbuild": "webpack -p --config ./webpack.config.js --progress",
     "start": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js",
     "start-dev": "./node_modules/.bin/webpack-dev-server --content-base ./client/dist --inline --hot",
     "dev-server": "nodemon --inspect ./server/app.js",

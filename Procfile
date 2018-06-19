@@ -1,1 +1,1 @@
-web: node ./server/app.js
+web: node --debug=5858 server/app.js
