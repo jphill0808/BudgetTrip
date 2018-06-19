@@ -52,6 +52,6 @@ app.get('/*', (req, res) => {
 	res.sendFile(path.join(__dirname, '/../client/dist/index.html'))
 })
 
-app.listen(1130, () => {
+app.listen(process.env.PORT || 1337, () => {
   console.log('Express is listening on port 1130');
 });
