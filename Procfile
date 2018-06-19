@@ -1,1 +1,1 @@
-web: ./node_modules/webpack-dev-server/bin/webpack-dev-server.js
+web: ./node_modules/.bin/webpack-dev-server --content-base ./client/dist --inline --hot | node ./server/app.js --inspect
