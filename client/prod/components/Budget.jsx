@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn } from 'material-ui/Table';
 import TextField from 'material-ui/TextField';
+import Header from './Header.jsx';
 
 const WAIT_INTERVAL = 1000;
 
@@ -109,12 +110,13 @@ class Budget extends React.Component {
     let negativeStyle = {
       color: this.state.negative ? 'red' : 'black',
       textAlign: 'center',
-      backgroundColor: 'tan',
+      // backgroundColor: 'tan',
     };
     let selectedTrip = this.state.activities;
 
     return (
       <div className="budget">
+        <Header />
         <Table
           height={this.state.table.height}
           fixedHeader={this.state.table.fixedHeader}

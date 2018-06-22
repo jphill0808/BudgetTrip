@@ -3,6 +3,7 @@ import Paper from 'material-ui/Paper';
 import TextField from 'material-ui/TextField';
 import DatePicker from 'material-ui/DatePicker';
 import RaisedButton from 'material-ui/RaisedButton';
+import Header from './Header.jsx';
 
 const axios = require('axios');
 
@@ -13,9 +14,6 @@ const style = {
     marginTop: 20,
     textAlign: 'center',
     paddingTop: 20,
-    borderTop: '5px solid tan',
-    borderRight: '5px solid tan',
-    borderLeft: '5px solid tan'
   },
   container: {
     marginLeft: 20,
@@ -45,7 +43,7 @@ export default class Search extends React.Component {
       lat: '',
       lng: '',
     };
-    
+
     this.onChange = input => {
       this.setState({ input });
     };
@@ -59,7 +57,16 @@ export default class Search extends React.Component {
     this.getEvents = this.getEvents.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.formatDate = this.formatDate.bind(this);
+    // this.getMenu = this.getMenu.bind(this);
   }
+
+  // getMenu() {
+  //   let lists = {
+  //     'Search': '/Search',
+  //     'Budget': '/Budget'
+  //   };
+  //   return lists;
+  // }
 
   handleChangeMinDate(event, date) {
     this.setState({
@@ -131,7 +138,7 @@ export default class Search extends React.Component {
       budget: '',
       location: '',
       startDate: 0,
-      endDate: 0, 
+      endDate: 0,
     });
   }
 
@@ -188,6 +195,7 @@ export default class Search extends React.Component {
 
     return (
       <div className="container" style={style.container}>
+        <Header />
         <Paper style={style.paper} zDepth={2}>
           <h2>Where do you want to go today?</h2>
           <form autoComplete="off">
