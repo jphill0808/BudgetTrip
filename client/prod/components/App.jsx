@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Login from './login.jsx';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import { Router, Route, BrowserRouter, Redirect, withRouter } from 'react-router-dom';
+import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
 import Search from './Search.jsx';
 import Header from './Header.jsx';
 import Auth from '../../../Auth/Auth.js';
@@ -12,7 +12,6 @@ import Activities from './Activities.jsx';
 import About from './About.jsx';
 
 const auth = new Auth();
-const style = {};
 
 class App extends React.Component {
   constructor(props) {
@@ -82,15 +81,12 @@ class App extends React.Component {
     } else {
       return (
         <MuiThemeProvider>
-          <div>
-            <div className="top-section">
-              <Header auth={auth} user={this.state.user} />
-              <Search updateActivities={this.updateActivities} user={this.state.user} updateInput={this.updateInput} />
-            </div>
-            <About displayStyle='mainPage'/>
-            <Activities selector={this.addSelectActivity} activities={this.state.activities} user={this.state.user} />
-            <Budget selectedTrip={this.state.selectedActivities} budget={this.state.input.budget} />
-          </div>
+          <Router>
+            <Switch>
+              <Route path="/Search" component={Search}/>
+              <Route path="/Budget" component={Budget}/>
+            </Switch>
+          </Router>
         </MuiThemeProvider>
       );
     }
